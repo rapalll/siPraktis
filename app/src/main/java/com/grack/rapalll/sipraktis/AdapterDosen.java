@@ -43,9 +43,9 @@ public class AdapterDosen extends RecyclerView.Adapter<AdapterDosen.HolderDosen>
       @Override
       public void onClick(View v) {
 
-        String uri = "tel:" + String.valueOf(holderDosen.getNoDosen());
+        String urii = "tel:" + String.valueOf(holderDosen.getNoDosen());
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse(uri));
+        intent.setData(Uri.parse(urii));
         context.startActivity(intent);
 
 //                Toast.makeText(context, , Toast.LENGTH_SHORT).show();
