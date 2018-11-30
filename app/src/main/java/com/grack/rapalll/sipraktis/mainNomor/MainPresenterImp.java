@@ -17,9 +17,9 @@ import java.util.List;
 public class MainPresenterImp implements MainPresenter {
 
     private MainView view;
-    private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Telepon");
-    private String namaDosen, noDosen, imgSkripsi;
-    private int idDosen;
+    private DatabaseReference database = FirebaseDatabase.getInstance().getReference("test");
+    private String namaDosen, panduanSkripsi;
+    private int noDosen;
     private List<Dosen> mDosen;
 
     MainPresenterImp(MainView view) {
@@ -30,35 +30,33 @@ public class MainPresenterImp implements MainPresenter {
     @Override
     public void loadNomor() {
         view.showLoading();
-        final Query asc = mRef.orderByChild("noDosen");
-        asc.addValueEventListener(new ValueEventListener() {
+//        database = FirebaseDatabase.getInstance().getReference().child("Telepon");
+//        final Query asc = database.orderByChild("noDosen");
+        database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mDosen = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     Dosen value = dataSnapshot1.getValue(Dosen.class);
-                    mDosen.add(value);
                     Dosen fire = new Dosen();
 
-                    idDosen = value != null ? value.getIdDosen() : 0;
-                    namaDosen = value != null ? value.getNameDosen() : null;
-//                    imgSkripsi = value != null ? value.getImgSkripsi() : null;
-                    noDosen = value != null ? value.getNoDosen() : null;
+                    namaDosen = value.getNamaDosen();
+                    panduanSkripsi = value.getPanduanSkripsi();
+                    noDosen = value.getNoDosen();
 
-
-//
-                    fire.setIdDosen(idDosen);
-                    fire.setNameDosen(namaDosen);
+                    fire.setNamaDosen(namaDosen);
+                    fire.setPanduanSkripsi(panduanSkripsi);
                     fire.setNoDosen(noDosen);
 //                    fire.setImgSkripsi(imgSkripsi);
 
 
                     mDosen.add(fire);
                     view.showDosen(mDosen);
+                    Log.i("DAA", ""+fire.getNamaDosen());
                 }
 
                 view.hideLoading();
-                mRef.keepSynced(true);
+                database.keepSynced(true);
             }
 
             @Override
