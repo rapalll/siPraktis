@@ -18,7 +18,7 @@ public class MainPresenterImp implements MainPresenter {
 
     private MainView view;
     private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().getRoot();
-    private String namaDosen, noDosen, imgSkripsi;
+    private String namaDosen, noDosen;
     private int idDosen;
     private List<Dosen> mDosen;
 
