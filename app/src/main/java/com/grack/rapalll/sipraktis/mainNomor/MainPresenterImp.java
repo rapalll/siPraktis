@@ -30,7 +30,7 @@ public class MainPresenterImp implements MainPresenter {
     @Override
     public void loadNomor() {
         view.showLoading();
-        final Query asc = mRef.orderByChild("namaDosen");
+        final Query asc = mRef.orderByChild("idDosen");
         asc.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
