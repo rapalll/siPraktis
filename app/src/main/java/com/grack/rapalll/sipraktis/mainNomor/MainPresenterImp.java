@@ -17,7 +17,7 @@ import java.util.List;
 public class MainPresenterImp implements MainPresenter {
 
     private MainView view;
-    private DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().getRoot();
+    private DatabaseReference mRef;
     private String namaDosen, noDosen, imgSkripsi;
     private int idDosen;
     private List<Dosen> mDosen;
@@ -30,6 +30,7 @@ public class MainPresenterImp implements MainPresenter {
     @Override
     public void loadNomor() {
         view.showLoading();
+        mRef= FirebaseDatabase.getInstance().getReference().child("test");
         final Query asc = mRef.orderByChild("namaDosen");
         asc.addValueEventListener(new ValueEventListener() {
             @Override

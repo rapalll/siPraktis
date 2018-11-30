@@ -36,14 +36,6 @@ public class Dosen implements Parcelable {
         this.noDosen = noDosen;
     }
 
-//    public String getImgSkripsi(){
-//        return imgSkripsi;
-//    }
-//
-//    public void setImgSkripsi(String imgSkrips) {
-//        this.imgSkripsi = imgSkrips;
-//    }
-
     @Override
     public int describeContents() {
         return 0;
